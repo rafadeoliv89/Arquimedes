@@ -18,7 +18,7 @@ public class PessoaDAO {
         Connection con = FabricaConexao.getConexao();
 
         try {
-            PreparedStatement comando = con.prepareStatement("INSERT INTO pessoa (nome,datanascimento,sexo,email,cpf) VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement comando = con.prepareStatement("INSERT INTO pessoa (nome,datanascimento,sexo,email,cpf,telefone) VALUES(?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             comando.setString(1, usuario.getNomePessoa());
             comando.setDate(2, new java.sql.Date(usuario.getDataNascimento().getTime()));
             comando.setString(3, usuario.getSexo());

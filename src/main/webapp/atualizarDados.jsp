@@ -31,6 +31,7 @@
                 <p><label>Nascimento: </label><input type="date" name="txtDataNascimento" value="${usuarioBusca.getDataNascimento()}"></p>
                 <p><label>Email: </label><input type="text" name="txtEmail" value="${usuarioBusca.getEmail()}"></p>
                 <p><label>CPF: </label><input type="text" name="txtCPF" value="${usuarioBusca.getCPF()}"></p>
+                <p><label>Telefone: </label><label>(DDD) </label><input maxlength="2" type="text" name="txtDDD" value=""/> <input maxlength="9" type="text" name="txtTelefone" value="${usuarioBusca.getTelefone()}"></p>
 
                 <input type="hidden" value="${usuarioBusca.getIdUsuario()}" name="txtIdUsuario"/>
                 <input type="submit" value="Atualizar" name="acao">

@@ -49,6 +49,7 @@
                 <p><label>E-mail: </label><input type="text" name="txtEmail" value="${usuarioBusca.getEmail()}"></p>
                 <p><label>CPF: </label><input type="text" name="txtCPF" value="${usuarioBusca.getCPF()}"><br/>
                 <p><label>Status: </label> ${nomeStatus}</p>
+                <p><label>Telefone: </label><label>(DDD) </label><input maxlength="2" type="text" name="txtDDD" value=""/> <input type="text" maxlength="9" name="txtTelefone" value="${usuarioBusca.getTelefone()}"></p>
                 <p><label>Perfil: </label><select name="optPerfil" value="${usuarioBusca.getPerfil()}" <%=hd%>>
                         <option>${primeiroPerfil}</option>
                         <option>${segundoPerfil}</option>

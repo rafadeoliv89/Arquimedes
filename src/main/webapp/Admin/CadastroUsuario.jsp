@@ -34,6 +34,9 @@
                 </p>
                 <p><label for="nome_cad">Email: </label><input type="text" name="txtEmail" placeholder="email@gmail.com"/></p>
                 <p><label for="nome_cad">CPF: </label><input type="text" name="txtCPF" placeholder="000.000.000-00"/></p>
+                <label for="nome_cad">Telefone: </label> <label>DDD:</label>
+                	<input width="5px" type="text" name="txtDDD" placeholder="(00)" maxlength="2"/>
+                	<input type="text" name="txtTelefone" placeholder="999999999" maxlength="9"/>
                 <p><label for="nome_cad">Login: </label><input type="text" name="txtLogin" placeholder="login"/></p>
                 <p><label for="nome_cad">Senha: </label><input type="password" name="txtSenha" placeholder="senha"/></p>
                 <p><label for="nome_cad">Perfil: </label><select name="optPerfil">
