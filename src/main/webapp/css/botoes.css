@@ -1,0 +1,108 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 06/12/2018, 00:21:04
+    Author     : Usuario
+*/
+
+.botao1 {
+  border-radius: 2px;
+  background-color: #3f3f96;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 10px;
+  height: 40px;
+  width: 100px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.botao1 span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.botao1 span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.botao1:hover span {
+  padding-right: 25px;
+}
+
+.botao1:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.botao2 {
+  padding: 10px 20px;
+  font-size: 10px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #3f3f96;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 6px #999;
+}
+
+.botao2:hover {background-color: #AAA}
+
+.botao2:active {
+  background-color: #3f3f96;
+  box-shadow: 0 5px #666;
+  transform: translateY(2px);
+}
+
+.btnIniciar {
+  border-radius: 2px;
+  background-color: #3f3f96;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 10px;
+  height: 40px;
+  width: 100px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.btnIniciar span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.btnIniciar span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.btnIniciar:hover span {
+  padding-right: 25px;
+}
+
+.btnIniciar:hover span:after {
+  opacity: 1;
+  right: 0;
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <filter>
+    <filter-name>AcessoLogado</filter-name>
+    <filter-class>br.arquimedes.autorizacaoAcesso.AcessoLogado</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AcessoLogado</filter-name>
+    <url-pattern>/home.jsp</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>AcessoAdministrativo</filter-name>
+    <filter-class>br.arquimedes.autorizacaoAcesso.AcessoAdministrativo</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AcessoAdministrativo</filter-name>
+    <url-pattern>/Admin/*</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <servlet-name>ControllerFactory</servlet-name>
+    <servlet-class>br.arquimedes.controler.ControllerFactory</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ControllerFactory</servlet-name>
+    <url-pattern>/ControllerFactory</url-pattern>
+  </servlet-mapping>
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+  <listener>
+    <listener-class>br.arquimedes.util.StartServerListener</listener-class>
+  </listener>
+</web-app>
