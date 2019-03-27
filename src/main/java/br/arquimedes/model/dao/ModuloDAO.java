@@ -87,11 +87,8 @@ public class ModuloDAO {
     }
 //************************************************************************************************************
     public List<Modulo> listar() throws ClassNotFoundException, SQLException {
-        
         System.out.println("---Dentro da DAO: ListaModulo----");
-        
         Connection con = FabricaConexao.getConexao();
-                
         List<Modulo> lista = new ArrayList();
 
         try {

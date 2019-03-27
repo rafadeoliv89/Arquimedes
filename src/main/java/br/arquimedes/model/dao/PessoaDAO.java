@@ -24,6 +24,7 @@ public class PessoaDAO {
             comando.setString(3, usuario.getSexo());
             comando.setString(4, usuario.getEmail());
             comando.setString(5, usuario.getCPF());
+            comando.setLong(6, usuario.getTelefone());
 
             comando.execute();
             
@@ -53,12 +54,13 @@ public class PessoaDAO {
         try {
             Connection con = FabricaConexao.getConexao();
 
-            PreparedStatement comando = con.prepareStatement("UPDATE pessoa SET nome =?, datanascimento=?, email=?, cpf=? WHERE idPessoa=?");
+            PreparedStatement comando = con.prepareStatement("UPDATE pessoa SET nome =?, datanascimento=?, email=?, cpf=?, telefone=? WHERE idPessoa=?");
             comando.setString(1, usuario.getNomePessoa());
             comando.setDate(2, new java.sql.Date(usuario.getDataNascimento().getTime()));
             comando.setString(3, usuario.getEmail());
             comando.setString(4, usuario.getCPF());
             comando.setInt(5, usuario.getIdPessoa());
+            comando.setLong(6, usuario.getTelefone());
 
             comando.execute();
             con.close();
@@ -86,7 +88,6 @@ public class PessoaDAO {
             } else {
                 resposta = true;
             }
-
         } catch (Exception sqlErro) {
             System.out.println("Erro:" + sqlErro.getMessage());
         } finally {
@@ -149,8 +150,8 @@ public class PessoaDAO {
                 usuario.setSexo(resultado.getString("sexo"));
                 usuario.setCPF(resultado.getString("cpf"));
                 usuario.setEmail(resultado.getString("email"));
+                usuario.setTelefone(resultado.getLong("telefone"));
             }
-
         } catch (Exception sqlErro) {
             System.out.println("Erro:" + sqlErro.getMessage());
         } finally {
@@ -164,47 +165,11 @@ public class PessoaDAO {
         }
         return usuario;
     }
-//************************************************************************************************************
-    public Usuario buscarCPF(Usuario usuario) throws ClassNotFoundException, SQLException {
-        Usuario busca = null;
-        Connection con = FabricaConexao.getConexao();
 
-        try {
-            PreparedStatement comando = con.prepareStatement("SELECT * FROM pessoa WHERE cpf=?");
-            comando.setString(1, usuario.getCPF());
-
-            ResultSet resultado = comando.executeQuery();
-
-            if (resultado.next()) {
-                busca = new Usuario();
-
-                busca.setIdPessoa(resultado.getInt("idpessoa"));
-                busca.setNomePessoa(resultado.getString("nome"));
-                busca.setDataNascimento(resultado.getDate("datanascimento"));
-                busca.setCPF(resultado.getString("cpf"));
-                busca.setEmail(resultado.getString("email"));
-            }
-
-        } catch (Exception sqlErro) {
-            System.out.println("Erro:" + sqlErro.getMessage());
-        } finally {
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception sqlErro2) {
-                    throw new RuntimeException(sqlErro2);
-                }
-            }
-        }
-        return busca;
-    }
 //************************************************************************************************************   
-    public List<Usuario> listar(Usuario usuario) throws ClassNotFoundException, SQLException {
-        
+    public List<Usuario> listar(Usuario usuario) throws ClassNotFoundException, SQLException {        
         System.out.println("---Dentro da DAO: lista pessoa----");
-        
         Connection con = FabricaConexao.getConexao();
-                
         List<Usuario> lista = new ArrayList();
 
         try {
@@ -221,6 +186,7 @@ public class PessoaDAO {
                 listagem.setDataNascimento(resultado.getDate("datanascimento"));
                 listagem.setCPF(resultado.getString("cpf"));
                 listagem.setEmail(resultado.getString("email"));
+                listagem.setTelefone(resultado.getLong("telefone"));
 
                 lista.add(listagem);
             }

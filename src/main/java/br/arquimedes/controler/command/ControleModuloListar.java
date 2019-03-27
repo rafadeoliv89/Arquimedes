@@ -6,8 +6,10 @@
 package br.arquimedes.controler.command;
 
 import br.arquimedes.controler.Command;
+import br.arquimedes.controler.ControleAcesso;
 import br.arquimedes.model.Modulo;
 import br.arquimedes.model.dao.ModuloDAO;
+import br.arquimedes.model.dao.UserModDAO;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,7 +22,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author Usuario
  */
 public class ControleModuloListar implements Command {
-
     @Override
     public String executar(HttpServletRequest request, HttpServletResponse response) {
 
@@ -31,10 +32,19 @@ public class ControleModuloListar implements Command {
 
         try {
             ModuloDAO moduloDao = new ModuloDAO();
+            UserModDAO usermodDao = new UserModDAO();
 
             List<Modulo> listaModulos = moduloDao.listar();
-            request.setAttribute("lista", listaModulos);
+            listaModulos.forEach(modulo -> {
+                    try {
+                        usermodDao.contUsuarios(modulo);
 
+                    } catch (ClassNotFoundException | SQLException ex) {
+                        Logger.getLogger(ControleAcesso.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+            
+            request.setAttribute("lista", listaModulos);
             request.setAttribute("msg", msg);
 
         } catch (ClassNotFoundException | SQLException ex) {

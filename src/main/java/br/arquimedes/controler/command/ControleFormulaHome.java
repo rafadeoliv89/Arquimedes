@@ -12,7 +12,6 @@ import br.arquimedes.model.PerfilAcesso;
 import br.arquimedes.model.UserForm;
 import br.arquimedes.model.UserMod;
 import br.arquimedes.model.Usuario;
-import br.arquimedes.model.dao.PessoaDAO;
 import br.arquimedes.model.dao.UserFormDAO;
 import br.arquimedes.model.dao.UserModDAO;
 import br.arquimedes.model.dao.UsuarioDAO;
@@ -44,7 +43,6 @@ public class ControleFormulaHome implements Command {
         Usuario usuario = new Usuario();
         UserModDAO usermodDao = new UserModDAO();
         UserMod usermod = new UserMod();
-        PessoaDAO pessoaDao = new PessoaDAO();
         UserFormDAO userformDao = new UserFormDAO();
         UserForm userform = new UserForm();
         

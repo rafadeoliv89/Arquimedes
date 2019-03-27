@@ -24,6 +24,15 @@ public class Formula {
     private ArrayList<String> variaveis3 = new ArrayList<String>();
     private int idFormulaDependente;
     private boolean Status;
+    private Modulo modulo = new Modulo();
+
+    public Modulo getModulo() {
+        return modulo;
+    }
+
+    public void setModulo(Modulo modulo) {
+        this.modulo = modulo;
+    }
 
     public ArrayList<String> getVariaveis3() {
         return variaveis3;

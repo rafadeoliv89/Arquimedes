@@ -80,4 +80,15 @@ public class ConversorData {
        
         return new java.sql.Date( data.getTime() );
     }
+    
+    public java.sql.Date calculaDataFim4(Date data) {
+        
+        Calendar cd = Calendar.getInstance();
+        cd.setTime(data);
+        cd.add(Calendar.DATE, 0);
+        
+        data = cd.getTime();
+       
+        return new java.sql.Date( data.getTime() );
+    }
 }

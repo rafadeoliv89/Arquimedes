@@ -17,13 +17,10 @@ import java.util.List;
 public class PlanoDAO {
 
     public void cadastrar(Plano plano) throws ClassNotFoundException, SQLException {
-
         System.out.println("-----Dentro da Cadastrar DAO-------");
-
         Connection con = FabricaConexao.getConexao();
 
         try {
-
             PreparedStatement comando = con.prepareStatement("INSERT INTO plano (nomeplano, valor, tempoplano, visibilidade) VALUES(?,?,?,'t')");
             comando.setString(1, plano.getNomePlano());
             comando.setDouble(2, plano.getValor());
@@ -79,21 +76,18 @@ public class PlanoDAO {
         return resposta;
     }
 //************************************************************************************************************
-    public List<Plano> listar() throws ClassNotFoundException, SQLException {
-        
-        System.out.println("---Dentro da PlanoDAO Listar----");
-        
+    public List<Plano> listar() throws ClassNotFoundException, SQLException {        
+        System.out.println("---Dentro da PlanoDAO Listar----");        
         Connection con = FabricaConexao.getConexao();
                 
         List<Plano> lista = new ArrayList();
-
         try {
             PreparedStatement comando = con.prepareStatement("SELECT * FROM  plano WHERE visibilidade='t'");
             ResultSet resultado = comando.executeQuery();
-
+            
             while (resultado.next()) {
                 Plano listagem = new Plano();
-
+                
                 listagem.setIdPlano(resultado.getInt("idplano"));
                 listagem.setNomePlano(resultado.getString("nomeplano"));
                 listagem.setValor(resultado.getDouble("valor"));
@@ -103,6 +97,7 @@ public class PlanoDAO {
             }
             
         } catch (Exception sqlErro) {
+            sqlErro.printStackTrace();
             System.out.println("Erro PlanoDAO Listar:" + sqlErro.getMessage());
         } finally {
             if (con != null) {

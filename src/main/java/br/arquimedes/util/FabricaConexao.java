@@ -9,7 +9,7 @@ public class FabricaConexao {
     public static Connection getConexao() throws ClassNotFoundException, SQLException{
         try{
             Class.forName("org.postgresql.Driver");
-            Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Arquimedes","postgres","postgres");
+            Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5433/Arquimedes","postgres","postgres");
 
             return con;
         

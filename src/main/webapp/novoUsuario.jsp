@@ -49,7 +49,10 @@
                     <input id="nome_cad" name="txtCPF" type="text"
                            placeholder="CPF" /><br>
                     <p><label for="nome_cad">CPF</label></p> 
-
+					<p>	<input maxlength="2" type="text" name="txtDDD" value=""/>
+						<label>(DDD) </label>
+						<input maxlength="9" type="text" name="txtTelefone">
+						<label>Telefone: </label></p>
                     <input id="nome_cad" name="txtLogin" type="text"
                            placeholder="Login" /><br>                   
                     <p><label for="nome_cad">Login</label></p>

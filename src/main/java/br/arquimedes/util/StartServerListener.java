@@ -6,6 +6,7 @@
 package br.arquimedes.util;
 
 import br.arquimedes.timer.TarefaEnviarEmailFim;
+import br.arquimedes.timer.TarefaRecadastrarPlano;
 import java.util.Timer;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -17,8 +18,10 @@ public class StartServerListener  implements ServletContextListener{
        System.out.println("Servidor iniciado");
        Timer t = new Timer();
        TarefaEnviarEmailFim tEmail = new TarefaEnviarEmailFim();
+       TarefaRecadastrarPlano tRecadastrar = new TarefaRecadastrarPlano();
 
         t.scheduleAtFixedRate(tEmail, 0, 86400000);
+        t.scheduleAtFixedRate(tRecadastrar, 0, 86400000);
         //24h = 86400000
    }
 

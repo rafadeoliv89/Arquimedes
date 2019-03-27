@@ -6,6 +6,7 @@
 package br.arquimedes.model.dao;
 
 import br.arquimedes.model.Modulo;
+import br.arquimedes.model.Plano;
 import br.arquimedes.model.UserMod;
 import br.arquimedes.model.Usuario;
 import br.arquimedes.util.FabricaConexao;
@@ -99,9 +100,7 @@ public class UserModDAO {
     }
 //************************************************************************************************************
     public void cadastrar(UserMod usermod, java.sql.Date dataExp) throws ClassNotFoundException, SQLException {
-
         System.out.println("-----Dentro da Usermod cadastrar DAO-------");
-
         Connection con = FabricaConexao.getConexao();
         
         try {
@@ -113,6 +112,33 @@ public class UserModDAO {
                 
                 comando.execute();
 
+        } catch (SQLException sqlErro) {
+            throw new RuntimeException(sqlErro);
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception sqlErro2) {
+                    throw new RuntimeException(sqlErro2);
+                }
+            }
+        }
+    }
+//************************************************************************************************************
+    public void reCadastrar(int idModulo,int idUsuario,int idPlano, java.sql.Date dataExp) throws ClassNotFoundException, SQLException {
+        System.out.println("-----Dentro da Usermod reCadastrar DAO-------");
+        Connection con = FabricaConexao.getConexao();
+        
+        try {
+                PreparedStatement comando = con.prepareStatement("UPDATE usermod SET dataexpiracao = ? WHERE fk_idmodulo = ? and fk_idusuario = ? and fk_idplano = ?");
+                comando.setDate(1, dataExp);
+                comando.setInt(2, idModulo);
+                comando.setInt(3, idUsuario);
+                comando.setInt(4, idPlano);
+                
+                comando.execute();
+                System.out.println("Plano recadastrado");
+                
         } catch (SQLException sqlErro) {
             throw new RuntimeException(sqlErro);
         } finally {
@@ -496,5 +522,88 @@ public class UserModDAO {
         }
         return lista;
     }
+//************************************************************************************************************   
+    public Modulo contUsuarios(Modulo modulo) throws ClassNotFoundException, SQLException {
+        System.out.println("---Dentro da DAO: contar usuarios por modulo----");
+        Connection con = FabricaConexao.getConexao();
+
+        try {
+            PreparedStatement comando = con.prepareStatement("SELECT COUNT(Fk_idUsuario) FROM usermod WHERE Fk_idModulo=?");
+            comando.setInt(1, modulo.getIdModulo());
+            
+            ResultSet resultado = comando.executeQuery();
+
+            if (resultado.next()) {
+                modulo.setContador(resultado.getInt("count"));
+            }
+        } catch (Exception sqlErro) {
+            System.out.println("Erro Listar modulos ADM:" + sqlErro.getMessage());
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception sqlErro2) {
+                    throw new RuntimeException(sqlErro2);
+                }
+            }
+        }
+        return modulo;
+    }
+//************************************************************************************************************   
+    public Plano contUsuariosPlano(Plano plano) throws ClassNotFoundException, SQLException {
+        System.out.println("---Dentro da DAO: contar usuarios por plano----");
+        Connection con = FabricaConexao.getConexao();
+
+        try {
+            PreparedStatement comando = con.prepareStatement("SELECT COUNT(Fk_idUsuario) FROM usermod WHERE Fk_idPlano=?");
+            comando.setInt(1, plano.getIdPlano());
+            
+            ResultSet resultado = comando.executeQuery();
+
+            if (resultado.next()) {
+                plano.setContador(resultado.getInt("count"));
+                System.out.println("dentro do if");
+            }
+        } catch (Exception sqlErro) {
+            System.out.println("Erro Listar planos:" + sqlErro.getMessage());
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception sqlErro2) {
+                    throw new RuntimeException(sqlErro2);
+                }
+            }
+        }
+        return plano;
+    }
+//************************************************************************************************************   
+    public Usuario contModulosUsuario(Usuario usuario) throws ClassNotFoundException, SQLException {
+        System.out.println("---Dentro da DAO: contar modulos por Usuario----");
+        Connection con = FabricaConexao.getConexao();
+
+        try {
+            PreparedStatement comando = con.prepareStatement("SELECT COUNT(Fk_idModulo) FROM usermod WHERE Fk_idUsuario=?");
+            comando.setInt(1, usuario.getIdUsuario());
+            
+            ResultSet resultado = comando.executeQuery();
+
+            if (resultado.next()) {
+                usuario.setContador(resultado.getInt("count"));
+            }
+        } catch (Exception sqlErro) {
+            System.out.println("Erro Listar modulos por usuario:" + sqlErro.getMessage());
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception sqlErro2) {
+                    throw new RuntimeException(sqlErro2);
+                }
+            }
+        }
+        return usuario;
+    }
+
 //************************************************************************************************************
 }

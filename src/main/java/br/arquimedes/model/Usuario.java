@@ -18,7 +18,16 @@ public class Usuario extends Pessoa{
     private int logado;
     private boolean status;
     private boolean statusUsuario;
+    private int contador;
 
+    public int getContador() {
+        return contador;
+    }
+
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
+    
     public int getIdUsuario() {
         return idUsuario;
     }

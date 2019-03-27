@@ -20,7 +20,15 @@ public abstract class Pessoa {
     private String email;
     private String CPF;
     private Date dataNascimento;
-    private Integer telefone;
+    private long telefone;
+
+    public long getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(long telefone) {
+        this.telefone = telefone;
+    }
 
     public Date getDataNascimento() {
         return dataNascimento;
@@ -71,12 +79,7 @@ public abstract class Pessoa {
     public void setCPF(String CPF) {
         this.CPF = CPF;
     }
-
-	public Integer getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(Integer telefone) {
-		this.telefone = telefone;
-	}
+    
+    
+    
 }

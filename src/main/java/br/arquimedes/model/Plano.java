@@ -18,7 +18,15 @@ public class Plano {
     private double valor;
     private int tempoPlano;
     private boolean visibilidade;    
-    
+    private int contador;
+
+    public int getContador() {
+        return contador;
+    }
+
+    public void setContador(int contador) {
+        this.contador = contador;
+    }    
 
     public int getTempoPlano() {
         return tempoPlano;

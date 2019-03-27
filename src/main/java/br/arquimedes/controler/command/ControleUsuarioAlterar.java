@@ -38,6 +38,7 @@ public class ControleUsuarioAlterar implements Command {
             ConversorData conv = new ConversorData();
 
             usuario.setNomePessoa(request.getParameter("txtNome"));
+            usuario.setTelefone(Integer.parseInt(request.getParameter("txtDDD")+request.getParameter("txtTelefone")));
             usuario.setDataNascimento(conv.conversorData(request.getParameter("txtDataNascimento")));
             usuario.setEmail(request.getParameter("txtEmail"));
             usuario.setCPF(request.getParameter("txtCPF"));

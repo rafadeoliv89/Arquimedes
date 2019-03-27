@@ -19,6 +19,15 @@ public class Modulo {
     private boolean statusModulo;
     private boolean visibilidade;
     private List<Formula> formulas;
+    private int contador;
+
+    public int getContador() {
+        return contador;
+    }
+
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
 
     public boolean getVisibilidade() {
         return visibilidade;

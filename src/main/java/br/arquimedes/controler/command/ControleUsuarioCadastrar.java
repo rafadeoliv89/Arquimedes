@@ -29,7 +29,7 @@ public class ControleUsuarioCadastrar implements Command {
     public String executar(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html;charset=UTF-8");
         response.setContentType("text/html");
-        
+    
         System.out.println("------Dentro da Command: Usuario Cadastrar-------");
 
         String msg;
@@ -43,7 +43,8 @@ public class ControleUsuarioCadastrar implements Command {
             Usuario usuario = new Usuario();
             ConversorData conv = new ConversorData();
             
-            usuario.setNomePessoa(request.getParameter("txtNome"));
+            usuario.setNomePessoa(request.getParameter("txtNome"));        
+            usuario.setTelefone(Integer.parseInt(request.getParameter("txtDDD")+request.getParameter("txtTelefone")));
             usuario.setDataNascimento(conv.conversorData(request.getParameter("txtDataNascimento")));
             System.out.println("Data: "+usuario.getDataNascimento());
             usuario.setSexo(request.getParameter("txtSexo"));
@@ -51,6 +52,7 @@ public class ControleUsuarioCadastrar implements Command {
             usuario.setCPF(request.getParameter("txtCPF"));
             usuario.setNomeUsuario(request.getParameter("txtLogin"));
             usuario.setSenha(request.getParameter("txtSenha"));
+            
             
             HttpSession sessaoUsuario = ((HttpServletRequest) request).getSession();
             Usuario validaUsuario = (Usuario) sessaoUsuario.getAttribute("usuarioAutenticado");

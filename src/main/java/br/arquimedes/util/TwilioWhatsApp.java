@@ -1,6 +1,5 @@
 package br.arquimedes.util;
 
-import org.codehaus.plexus.util.StringUtils;
 
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
@@ -12,11 +11,11 @@ public class TwilioWhatsApp {
 	private static final String DEFAULT_NUMBER = "+14155238886";
 	
 	public static Message enviar(String de, String para, String mensagem) throws Exception {
-		if (StringUtils.isBlank(de)) {
+		if (de==null) {
 			de = DEFAULT_NUMBER;
 		}
 		
-		if (StringUtils.isBlank(mensagem)) {
+		if (mensagem==null) {
 			throw new Exception("TwilioConfig: Campo de mensagem vazio");
 		}
 		

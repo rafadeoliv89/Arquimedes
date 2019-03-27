@@ -8,6 +8,7 @@ package br.arquimedes.controler.command;
 import br.arquimedes.controler.Command;
 import br.arquimedes.model.Usuario;
 import br.arquimedes.model.dao.PessoaDAO;
+import br.arquimedes.model.dao.UserModDAO;
 import br.arquimedes.model.dao.UsuarioDAO;
 import java.sql.SQLException;
 import java.util.List;
@@ -31,10 +32,19 @@ public class ControleUsuarioListar implements Command {
         String caminho = "../Admin/listagemDeUsuarios.jsp";
 
         try {
-            PessoaDAO pessoaDao = new PessoaDAO();
             UsuarioDAO usuarioDao = new UsuarioDAO();
+            UserModDAO usermodDao = new UserModDAO(); 
 
             List<Usuario> listaUsuarios = usuarioDao.listar();
+            listaUsuarios.forEach(usuario -> {
+                    try {
+                        usermodDao.contModulosUsuario(usuario);
+
+                    } catch (ClassNotFoundException | SQLException ex) {
+                        Logger.getLogger(ControleUsuarioListar.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+            
             request.setAttribute("lista", listaUsuarios);
 
             

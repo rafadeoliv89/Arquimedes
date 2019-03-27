@@ -391,6 +391,7 @@ public class UserFormDAO {
                 listagem.getUsuario().setNomeUsuario(resultado.getString("nomeusuario"));
                 listagem.getModulo().setIdModulo(resultado.getInt("idModulo"));
                 listagem.getModulo().setNome(resultado.getString("NomeModulo"));
+                listagem.getFormula().getModulo().setNome(resultado.getString("NomeModulo"));
                 listagem.getFormula().setDescricao(resultado.getString("descricao"));
                 listagem.getFormula().setIdFormula(resultado.getInt("idFormula"));
                 listagem.getFormula().setNomeFormula(resultado.getString("nomeFormula"));

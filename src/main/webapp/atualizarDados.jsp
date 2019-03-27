@@ -25,7 +25,6 @@
             <font color="blue"><%=msg%></font>
             <%}%>
             <br>
-
             <form action="../../Arquimedes/controler/ControleUsuario" method="POST" accept-charset="iso-8859-1,utf-8">
                 <p><label>Nome: </label><input type="text" name="txtNome" value="${usuarioBusca.getNomePessoa()}"></p>
                 <p><label>Nascimento: </label><input type="date" name="txtDataNascimento" value="${usuarioBusca.getDataNascimento()}"></p>

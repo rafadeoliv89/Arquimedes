@@ -6,8 +6,10 @@
 package br.arquimedes.controler.command;
 
 import br.arquimedes.controler.Command;
+import br.arquimedes.controler.ControleAcesso;
 import br.arquimedes.model.Plano;
 import br.arquimedes.model.dao.PlanoDAO;
+import br.arquimedes.model.dao.UserModDAO;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -31,10 +33,19 @@ public class ControlePlanoListar implements Command {
 
         try {
             PlanoDAO planoDao = new PlanoDAO();
-                
-            List<Plano> lista = planoDao.listar();
-            request.setAttribute("lista", lista);
+            UserModDAO usermodDao = new UserModDAO();    
+            
+            List<Plano> lista = planoDao.listar();            
+            lista.forEach(plano -> {
+                    try {
+                        usermodDao.contUsuariosPlano(plano);
 
+                    } catch (ClassNotFoundException | SQLException ex) {
+                        Logger.getLogger(ControleAcesso.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+            
+            request.setAttribute("lista", lista);
             request.setAttribute("msg", msg);
             
         } catch (ClassNotFoundException | SQLException ex) {
